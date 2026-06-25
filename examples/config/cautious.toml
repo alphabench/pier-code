@@ -1,0 +1,8 @@
+# Cautious config: ask before anything that writes, runs, or touches the network.
+model = "sarvam-105b"
+
+# Auto-approve only provably read-only commands; prompt for everything else.
+approval_policy = "untrusted"
+
+# Read anywhere, but only write inside the current workspace.
+sandbox_mode = "workspace-write"

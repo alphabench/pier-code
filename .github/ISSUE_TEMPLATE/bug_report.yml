@@ -1,0 +1,140 @@
+name: 🐛 Bug Report
+description: Report a bug or unexpected behavior in Sarvam Code
+title: "[BUG] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this bug! Please fill out the sections below to help us understand and fix the issue.
+
+        Before submitting, please check:
+        - You're on the latest version of Sarvam Code (`sarvam-code --version`).
+        - This hasn't already been reported in [existing issues](https://github.com/alphabench/sarvam-code/issues?q=is%3Aissue+label%3Abug).
+        - This is a bug, not a feature request or support question.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight checklist
+      options:
+        - label: I have searched existing issues and this hasn't been reported yet
+          required: true
+        - label: This is a single bug report (please file separate reports for different bugs)
+          required: true
+        - label: I am using the latest version of Sarvam Code
+          required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What's wrong?
+      description: Describe what's happening that shouldn't be.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should happen?
+      description: Describe the expected behavior.
+    validations:
+      required: true
+
+  - type: textarea
+    id: error_output
+    attributes:
+      label: Error messages / logs
+      description: Paste any error output, stack traces, or relevant logs here.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: |
+        Clear, numbered steps anyone can follow to reproduce the issue.
+        Include any code, file contents, or context needed. A minimal example helps a lot.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: model
+    attributes:
+      label: Model
+      description: Which model were you using? (Run `/model` to check.)
+      options:
+        - sarvam-105b
+        - sarvam-30b
+        - Not sure / multiple
+        - Other
+    validations:
+      required: false
+
+  - type: dropdown
+    id: regression
+    attributes:
+      label: Is this a regression?
+      description: Did this work in a previous version?
+      options:
+        - "Yes, this worked in a previous version"
+        - "No, this never worked"
+        - "I don't know"
+    validations:
+      required: true
+
+  - type: input
+    id: working_version
+    attributes:
+      label: Last working version
+      description: If this is a regression, which version last worked?
+      placeholder: "e.g., 0.1.0"
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: Sarvam Code version
+      description: Run `sarvam-code --version` and paste the output.
+      placeholder: "e.g., 0.1.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: terminal
+    attributes:
+      label: Terminal / shell
+      description: Which terminal are you using?
+      options:
+        - Terminal.app (macOS)
+        - iTerm2
+        - Warp
+        - VS Code integrated terminal
+        - JetBrains IDE terminal
+        - Non-interactive / CI environment
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional information
+      description: |
+        Anything else that might help? Screenshots, config files, related code, or a link to a repo that reproduces the issue.
+    validations:
+      required: false

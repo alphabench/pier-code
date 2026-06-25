@@ -1,0 +1,12 @@
+# Power-user config: fewer prompts, leaning on the workspace sandbox for safety.
+model = "sarvam-105b"
+
+# Let the agent proceed and ask only when it wants to escalate.
+approval_policy = "on-request"
+
+# Confine writes to the workspace; the sandbox is what keeps this safe.
+sandbox_mode = "workspace-write"
+
+# Allow network access for tasks that need it (installs, fetches, etc.).
+[sandbox_workspace_write]
+network_access = true

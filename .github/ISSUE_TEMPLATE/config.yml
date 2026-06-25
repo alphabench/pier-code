@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+    - name: 📖 Documentation
+      url: https://github.com/alphabench/sarvam-code/tree/main/docs
+      about: Read the docs before filing — your question may already be answered.
+    - name: ❓ Questions & support
+      url: mailto:hello@sarvamcode.com
+      about: For account, billing, or general support questions, email us.
+    - name: 🔒 Security issues
+      url: https://github.com/alphabench/sarvam-code/blob/main/SECURITY.md
+      about: Report vulnerabilities privately — do not open a public issue.

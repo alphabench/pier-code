@@ -1,0 +1,2 @@
+# Minimal config: pick a model, keep the safe defaults.
+model = "sarvam-105b"

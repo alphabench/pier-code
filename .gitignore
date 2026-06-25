@@ -1,0 +1,27 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# Secrets & credentials — never commit these
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*_rsa
+*_rsa.pub
+id_*
+*.p12
+*.pfx
+*.keystore
+*credential*
+*secret*
+
+# Dependencies / build output
+node_modules/
+dist/
+build/
