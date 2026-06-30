@@ -404,32 +404,11 @@ print_launch_instructions() {
   esac
 }
 
-prompt_yes_no() {
-  case "$NON_INTERACTIVE" in
-    1 | [Tt][Rr][Uu][Ee] | [Yy][Ee][Ss]) return 1 ;;
-  esac
-
-  if ( : </dev/tty ) 2>/dev/null; then
-    printf '%s [y/N] ' "$1" >/dev/tty
-    IFS= read -r answer </dev/tty || return 1
-  elif [ -t 0 ]; then
-    printf '%s [y/N] ' "$1"
-    IFS= read -r answer || return 1
-  else
-    return 1
-  fi
-
-  case "$answer" in
-    y | Y | yes | YES) return 0 ;;
-    *) return 1 ;;
-  esac
-}
-
-maybe_launch_pier_code() {
-  if prompt_yes_no "Start Pier now?"; then
-    step "Launching Pier"
-    "$BIN_PATH"
-  fi
+print_open_new_window_hint() {
+  # We can't reliably hand off to the interactive TUI from a `curl | sh` pipe
+  # (no usable tty), and launching it here just exits back to the prompt. So
+  # instead tell the user how to get a shell that can actually run `pier`.
+  step "Open a new terminal window (or run  exec \$SHELL  to refresh) to access pier"
 }
 
 # ---- main -------------------------------------------------------------------
@@ -548,10 +527,11 @@ else
   printf 'Pier CLI %s installed successfully.\n' "$resolved_version"
 fi
 
-# Offer to launch only on an interactive fresh install/reinstall — never during a
-# non-interactive self-update, where stdin is the curl pipe (no tty) and the
-# nested TUI would exit non-zero and fail the whole update.
+# On a fresh interactive install/reinstall, point the user at a shell that can
+# actually run `pier`. We don't auto-launch the TUI: from a `curl | sh` pipe
+# there's no usable tty to hand off to, so the launch would just exit (and on a
+# non-interactive self-update it would fail the whole update).
 case "$NON_INTERACTIVE" in
   1 | [Tt][Rr][Uu][Ee] | [Yy][Ee][Ss]) : ;;
-  *) maybe_launch_pier_code ;;
+  *) print_open_new_window_hint ;;
 esac
